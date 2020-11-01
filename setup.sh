@@ -10,19 +10,16 @@ bios () {
 		o # set to dos
 
 		n # new partition
+		p # primary partition
 		1 # partition number 1
 		# default - start at beginning of disk 
 		+4G # 4G swap partition
-		p # make primary partition
 
 		n # new partition
+		p # primary partition
 		2 # partion number 2
 		# default, start immediately after preceding partition
 		# default, extend partition to end of disk
-		p # make primary partition
-
-		a # make a partition bootable
-		2 # bootable partition is partition 2 -- /dev/sda2
 
 		t # change type to swap
 		1 # sda1 is swap
@@ -37,16 +34,19 @@ efi () {
 	sed -e 's/\s*\([\+0-9a-zA-Z]*\).*/\1/' << EOF | fdisk $device;
 		g # set to gpt
 		n # new partition
+		p # primary partition
 		1 # partition number 1
 		# default - start at beginning of disk 
 		+550M # 550M boot partition
 
 		n # new partition
+		p # primary partition
 		2 # partion number 2
 		# default, start immediately after preceding partition
 		+4G # 4G swap partition
 
 		n # new partition
+		p # primary partition
 		3 # partion number 3
 		# default, start immediately after preceding partition
 		# default, extend partition to end of disk
