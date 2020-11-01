@@ -76,8 +76,6 @@ get_boot () {
 	fi;
 }
 get_boot;
-echo "Look $boot";
-echo "Hercahercules $boot";
 
 
 
