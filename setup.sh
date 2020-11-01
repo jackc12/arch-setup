@@ -23,7 +23,7 @@ bios () {
 
 		t # change type to swap
 		1 # sda1 is swap
-		19 #number for swap partition
+		82 #number for swap partition
 
 		w # write the partition table
 EOF
