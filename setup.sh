@@ -28,6 +28,51 @@ bios () {
 
 		w # write the partition table
 EOF
+
+mkfs.ext4 "${device}2";
+mkswap "${device}1";
+swapon "${device}1";
+
+mount "${device}2 /mnt";
+
+pacstrap /mnt base linux linux-firmware;
+
+genfstab -U /mnt >> /mnt/etc/fstab;
+
+arch-chroot /mnt;
+
+ln -sf /usr/share/zoneinfo/America/New_York /etc/localtime;
+
+hwclock --systohc;
+
+sed -i '/en_US.UTF-8\ UTF-8 /s/^#//' /etc/locale.gen;
+locale-gen;
+
+echo 'LANG=en_US.UTF-8' > /etc/locale.conf;
+
+echo 'arch-dell' > /etc/hostname;
+echo "127.0.0.1		localhost\n::1		localhost\n127.0.1.1	arch-dell.localdomain	arch-dell" >> /etc/hosts;
+
+sed -e 's/\s*\([\+0-9a-zA-Z]*\).*/\1/' << EOF | passwd;
+	hercahercules
+	#
+	hercahercules
+EOF
+
+pacman -S grub;
+
+grub-install --force --target=i386-pc $device;
+
+grub-mkconfig -o /boot/grub/grub.cfg;
+
+exit;
+
+unmount -a;
+
+reboot;
+
+
+
 }
 
 
