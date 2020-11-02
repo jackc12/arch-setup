@@ -55,7 +55,6 @@ echo "127.0.0.1		localhost\n::1		localhost\n127.0.1.1	arch-dell.localdomain	arch
 
 sed -e 's/\s*\([\+0-9a-zA-Z]*\).*/\1/' << EOF | passwd;
 	hercahercules
-	#
 	hercahercules
 EOF
 
