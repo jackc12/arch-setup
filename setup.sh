@@ -45,20 +45,27 @@ ln -sf /usr/share/zoneinfo/America/New_York /etc/localtime;
 
 hwclock --systohc;
 
+#uncomment US keyboard
 sed -i '/en_US.UTF-8\ UTF-8 /s/^#//' /etc/locale.gen;
 locale-gen;
 
+#modify locale.conf
 echo 'LANG=en_US.UTF-8' > /etc/locale.conf;
 
+#modify hostname
 echo 'arch-dell' > /etc/hostname;
-echo "127.0.0.1		localhost\n::1		localhost\n127.0.1.1	arch-dell.localdomain	arch-dell" >> /etc/hosts;
+
+#modify hosts
+echo '127.0.0.1		localhost
+::1		localhost
+127.0.1.1	arch-dell.localdomain	arch-dell' >> /etc/hosts;
 
 sed -e 's/\s*\([\+0-9a-zA-Z]*\).*/\1/' << EOF | passwd;
 	hercahercules
 	hercahercules
 EOF
 
-pacman -S grub;
+pacman -Sy grub;
 
 grub-install --force --target=i386-pc $device;
 
