@@ -7,6 +7,9 @@
 bios () {
 	fdisk -l;
 	read -p "Type device to install on (e.g. /dev/sda): " device;
+	read -p "This will delete everything on $device! Would you like to proceed? (Y/N): " confirm && [[ $confirm == [yY] || $confirm == [yY][eE][sS] ]] || exit 1;
+
+	dd "if=/dev/zero of=$device bs=512 count=1 conv=notrunc"
 	sed -e 's/\s*\([\+0-9a-zA-Z]*\).*/\1/' << EOF | fdisk $device;
 		o # set to dos
 
@@ -33,13 +36,13 @@ mkfs.ext4 "${device}2";
 mkswap "${device}1";
 swapon "${device}1";
 
-mount "${device}2 /mnt";
+# mount "${device}2 /mnt";
 
-pacstrap /mnt base linux linux-firmware;
+# pacstrap /mnt base linux linux-firmware;
 
-genfstab -U /mnt >> /mnt/etc/fstab;
+# genfstab -U /mnt >> /mnt/etc/fstab;
 
-arch-chroot /mnt;
+# arch-chroot /mnt;
 
 # ln -sf /usr/share/zoneinfo/America/New_York /etc/localtime;
 
