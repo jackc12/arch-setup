@@ -70,38 +70,14 @@ EOF
 
 pacman -Sy grub;
 
-echo 'Installed grub
-
-grub
-
-GRUB
-
-GRUB'
 
 grub-install --target=i386-pc $device --force;
 
-echo 'GRUB INSTALL COMPLETED
-
-LOOK HERE DUMBASS'
-
 grub-mkconfig -o /boot/grub/grub.cfg;
-
-echo 'GRUB CONFIG MADE
-
-
-MADE GRUB CONFIG'
 
 exit;
 
-echo 'EXITED arch-chroot
-
-LOOK HERE'
-
 unmount -a;
-
-echo 'UNMOUNTED
-
-LOOK ABOVE'
 
 reboot;
 
