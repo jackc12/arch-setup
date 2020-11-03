@@ -41,66 +41,66 @@ genfstab -U /mnt >> /mnt/etc/fstab;
 
 arch-chroot /mnt;
 
-ln -sf /usr/share/zoneinfo/America/New_York /etc/localtime;
+# ln -sf /usr/share/zoneinfo/America/New_York /etc/localtime;
 
-hwclock --systohc;
+# hwclock --systohc;
 
-#uncomment US keyboard
-sed -i '/en_US.UTF-8\ UTF-8 /s/^#//' /etc/locale.gen;
-locale-gen;
+# #uncomment US keyboard
+# sed -i '/en_US.UTF-8\ UTF-8 /s/^#//' /etc/locale.gen;
+# locale-gen;
 
-#modify locale.conf
-echo 'LANG=en_US.UTF-8' > /etc/locale.conf;
+# #modify locale.conf
+# echo 'LANG=en_US.UTF-8' > /etc/locale.conf;
 
-#modify hostname
-echo 'arch-dell' > /etc/hostname;
+# #modify hostname
+# echo 'arch-dell' > /etc/hostname;
 
-#modify hosts
-echo '127.0.0.1		localhost
-::1		localhost
-127.0.1.1	arch-dell.localdomain	arch-dell' >> /etc/hosts;
+# #modify hosts
+# echo '127.0.0.1		localhost
+# ::1		localhost
+# 127.0.1.1	arch-dell.localdomain	arch-dell' >> /etc/hosts;
 
-sed -e 's/\s*\([\+0-9a-zA-Z]*\).*/\1/' << EOF | passwd;
-	hercahercules
-	hercahercules
-EOF
+# sed -e 's/\s*\([\+0-9a-zA-Z]*\).*/\1/' << EOF | passwd;
+# 	hercahercules
+# 	hercahercules
+# EOF
 
-pacman -Sy grub;
+# pacman -Sy grub;
 
-echo 'Installed grub
+# echo 'Installed grub
 
-grub
+# grub
 
-GRUB
+# GRUB
 
-GRUB'
+# GRUB'
 
-grub-install --target=i386-pc $device --force;
+# grub-install --target=i386-pc $device --force;
 
-echo 'GRUB INSTALL COMPLETED
+# echo 'GRUB INSTALL COMPLETED
 
-LOOK HERE DUMBASS'
+# LOOK HERE DUMBASS'
 
-grub-mkconfig -o /boot/grub/grub.cfg;
+# grub-mkconfig -o /boot/grub/grub.cfg;
 
-echo 'GRUB CONFIG MADE
+# echo 'GRUB CONFIG MADE
 
 
-MADE GRUB CONFIG'
+# MADE GRUB CONFIG'
 
-exit;
+# exit;
 
-echo 'EXITED arch-chroot
+# echo 'EXITED arch-chroot
 
-LOOK HERE'
+# LOOK HERE'
 
-unmount -a;
+# unmount -a;
 
-echo 'UNMOUNTED
+# echo 'UNMOUNTED
 
-LOOK ABOVE'
+# LOOK ABOVE'
 
-reboot;
+# reboot;
 
 
 
