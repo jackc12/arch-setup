@@ -75,7 +75,7 @@ GRUB
 
 GRUB'
 
-grub-install --force --target=i386-pc $device;
+grub-install --target=i386-pc $device --force;
 
 echo 'GRUB INSTALL COMPLETED
 
