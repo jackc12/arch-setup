@@ -35,52 +35,56 @@ EOF
 mkfs.ext4 "${device}2";
 mkswap "${device}1";
 
+sleep 5;
+
 mount "${device}2 /mnt";
+echo mounted;
 
 swapon "${device}1";
+echo swapon;
 
-pacstrap /mnt base linux linux-firmware;
+# pacstrap /mnt base linux linux-firmware;
 
-genfstab -U /mnt >> /mnt/etc/fstab;
+# genfstab -U /mnt >> /mnt/etc/fstab;
 
-arch-chroot /mnt;
+# arch-chroot /mnt;
 
-ln -sf /usr/share/zoneinfo/America/New_York /etc/localtime;
+# ln -sf /usr/share/zoneinfo/America/New_York /etc/localtime;
 
-hwclock --systohc;
+# hwclock --systohc;
 
-#uncomment US keyboard
-sed -i '/en_US.UTF-8\ UTF-8 /s/^#//' /etc/locale.gen;
-locale-gen;
+# #uncomment US keyboard
+# sed -i '/en_US.UTF-8\ UTF-8 /s/^#//' /etc/locale.gen;
+# locale-gen;
 
-#modify locale.conf
-echo 'LANG=en_US.UTF-8' > /etc/locale.conf;
+# #modify locale.conf
+# echo 'LANG=en_US.UTF-8' > /etc/locale.conf;
 
-#modify hostname
-echo 'arch-dell' > /etc/hostname;
+# #modify hostname
+# echo 'arch-dell' > /etc/hostname;
 
-#modify hosts
-echo '127.0.0.1		localhost
-::1		localhost
-127.0.1.1	arch-dell.localdomain	arch-dell' >> /etc/hosts;
+# #modify hosts
+# echo '127.0.0.1		localhost
+# ::1		localhost
+# 127.0.1.1	arch-dell.localdomain	arch-dell' >> /etc/hosts;
 
-sed -e 's/\s*\([\+0-9a-zA-Z]*\).*/\1/' << EOF | passwd;
-	hercahercules
-	hercahercules
-EOF
+# sed -e 's/\s*\([\+0-9a-zA-Z]*\).*/\1/' << EOF | passwd;
+# 	hercahercules
+# 	hercahercules
+# EOF
 
-pacman -Sy grub;
+# pacman -Sy grub;
 
 
-grub-install --target=i386-pc $device --force;
+# grub-install --target=i386-pc $device --force;
 
-grub-mkconfig -o /boot/grub/grub.cfg;
+# grub-mkconfig -o /boot/grub/grub.cfg;
 
-exit;
+# exit;
 
-unmount -a;
+# unmount -a;
 
-reboot;
+# reboot;
 
 
 
