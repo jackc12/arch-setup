@@ -39,6 +39,7 @@ sleep 5;
 
 mount "${device}2 /mnt";
 echo mounted;
+sleep 5;
 
 swapon "${device}1";
 echo swapon;
