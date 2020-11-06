@@ -1,4 +1,4 @@
-# timedatectl set-ntp true;
+timedatectl set-ntp true;
 # fdisk -l
 
 # read -p "Type device to install on (e.g. /dev/sda): " device;
@@ -34,9 +34,10 @@ EOF
 
 mkfs.ext4 "${device}2";
 mkswap "${device}1";
-swapon "${device}1";
 
 mount "${device}2 /mnt";
+
+swapon "${device}1";
 
 pacstrap /mnt base linux linux-firmware;
 
